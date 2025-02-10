@@ -1,1 +1,135 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 진부중 배구동아리</title>
+    <link rel="icon" href="your-favicon.ico">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+        main {
+            padding: 20px;
+        }
+        /* 영상 크기 조정 */
+        video {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        /* 이미지 갤러리 스타일 */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        /* 로그인 폼 스타일 */
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            main {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>추억 저장소</h1>
+    </header>
+
+    <!-- 로그인 폼 -->
+    <div id="login-form" class="login-form">
+        <h2>로그인</h2>
+        <form id="login" onsubmit="return validateLogin(event)">
+            <input type="text" id="username" placeholder="아이디" required>
+            <input type="password" id="password" placeholder="비밀번호" required>
+            <button type="submit">로그인</button>
+        </form>
+        <p id="login-error" class="hidden" style="color: red;">아이디 또는 비밀번호가 잘못되었습니다.</p>
+    </div>
+
+    <!-- 로그인 후 표시되는 콘텐츠 -->
+    <main id="main-content" class="hidden">
+        <section>
+            <h2>영상 (아래로 스크롤)</h2>
+            <video controls style="max-width: 80%; height: auto; margin: 0 auto; display: block;">
+                <source src="video/video-1.mp4" type="video/mp4">
+                video 1
+            </video>
+        </section>
+        <section>
+            <h2>사진</h2>
+            <div class="image-gallery">
+                <img src="photo/photo-1.png" alt="배구부 촬영 사진">
+                <img src="image2.jpg" alt="추억의 사진 2">
+                <img src="image3.jpg" alt="추억의 사진 3">
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const validUsername = "user";
+        const validPassword = "1234";
+
+        function validateLogin(event) {
+            event.preventDefault(); // 폼 제출을 막음
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === validUsername && password === validPassword) {
+                // 로그인 성공
+                document.getElementById("login-form").classList.add("hidden");
+                document.getElementById("main-content").classList.remove("hidden");
+            } else {
+                // 로그인 실패
+                document.getElementById("login-error").classList.remove("hidden");
+            }
+        }
+    </script>
+</body>
+</html>
